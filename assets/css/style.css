@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    height: 100vh;
+    font-size: 2rem;
+    background-image: url(../img/pattern-randomized\(2\).svg);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: cover;
+    font-family: 'M PLUS 1', sans-serif;
+    color: black;
+}
+header{
+    text-align: center;
+    /*11.3*/
+}
+h1{
+    font-family: 'Oswald', sans-serif;
+}
+.section-one{
+    text-align: center;
+    height: 8.7vh;
+}
+.sec-fazer{
+    width: 90rem;
+}
+.sec-concluida{
+    width: 90rem;
+    display: none;
+}
+.sections{
+    border: #FF6600 solid 2px;
+    border-radius: 0.5rem;
+    position: absolute;
+}
+.div-principal{
+    position: relative;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
