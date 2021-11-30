@@ -2,22 +2,38 @@
 const inputText = document.querySelector('#inputText');
 const btEnviar = document.querySelector('#btEnviar');
 const respFazer = document.querySelector('.respFazer');
+const ulFazer = document.querySelector('.ulFazer')
 //const respConcluida = document.querySelector('.respConcluida');
+function filtro(){
+    if(!inputText.value){
+        return;
+    }
+    criarElementos();
+}
 
 function criarElementos(){
-    const div = document.createElement('div');
-    const p = document.createElement('p');
+    const li = document.createElement('li');
     const botao = document.createElement('button');
-    juntarElementos(div, p, botao);
+    juntarElementos(li, botao);
 }
-function juntarElementos(div, p, botao){
-    div.appendChild(p);
-    p.innerText=inputText.value;
-    p.appendChild(botao);
+function juntarElementos( li, botao){
+    ulFazer.appendChild(li);
+    li.innerText=inputText.value;
+    li.appendChild(botao);
     botao.innerText='bora';
-    imprimir(div);
+    imprimir(li);
 }
-function imprimir(div){
-    respFazer.appendChild(div);
+function imprimir(li){
+    respFazer.appendChild(li);
+    limpar();
 }
-btEnviar.addEventListener('click', criarElementos);
+function limpar(){
+    inputText.value='';
+    inputText.focus();
+}
+btEnviar.addEventListener('click', filtro);
+inputText.addEventListener('keypress', function(e){
+    if (e.keyCode===13){
+        filtro();
+    }
+});
