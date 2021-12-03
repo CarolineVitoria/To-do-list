@@ -3,6 +3,9 @@ const inputText = document.querySelector('#inputText');
 const linkEnviar = document.querySelector('#linkEnviar');
 const divFazer = document.querySelector('.divFazer');
 const divConcluida = document.querySelector('.divConcluida');
+const secConcluida = document.querySelector('.sec-concluida');
+
+
 function filtro(){
     if(!inputText.value){
         return;
@@ -12,19 +15,19 @@ function filtro(){
 function criarEl(input){
     const link = document.createElement('a');
     link.setAttribute('class', 'fas');
-    link.classList.add('fa-trash')
+    link.classList.add('fa-times-circle')
     const div = document.createElement('div');
     div.setAttribute('class', 'divTarefa')
-    const li = document.createElement('li');    
-    li.innerText=input;
-    const check = document.createElement('input');
-    check.type = 'checkbox';   
-    check.setAttribute('class', 'box');
-    juntarElementos(link, div, li, check);
+    const span = document.createElement('span');    
+    span.innerText=input;
+    const sLink = document.createElement('a');
+    sLink.setAttribute('class', 'fas');
+    sLink.classList.add('fa-check-circle') 
+    juntarElementos(link, div, span, sLink);
 }
-function juntarElementos(link, div, li, check){
-    div.appendChild(check);
-    div.appendChild(li);
+function juntarElementos(link, div, span, sLink){
+    div.appendChild(sLink);
+    div.appendChild(span);
     div.appendChild(link);
     imprimir(div);
 }
@@ -70,9 +73,9 @@ function addTarefasConcluidasSalvas(){
     const tarefaConcluida = localStorage.getItem('tarefasConcluidas');
     const listaConcluidas= JSON.parse(tarefaConcluida);
     for(let tarefaC of listaConcluidas){
-        const li = document.createElement('li');
-        li.innerText=tarefaC;
-        divConcluida.appendChild(li);
+        const span = document.createElement('span');
+        span.innerText=tarefaC;
+        divConcluida.appendChild(span);
     }
 }
 linkEnviar.addEventListener('click', filtro);
@@ -83,23 +86,27 @@ inputText.addEventListener('keypress', function(e){
 });
 document.addEventListener('click', function(e){
     const el = e.target;
-    if(el.classList.contains('fa-trash')){
+    if(el.classList.contains('fa-times-circle')){
         el.parentElement.remove();
         salvarTarefas();
     }
 });
 document.addEventListener('click', function(e){
     const elemento = e.target;
-    if(elemento.classList.contains('box')){
-        if(elemento.checked){
+    if(elemento.classList.contains('fa-check-circle')){
             let TConcluida = elemento.nextSibling;
             TConcluida.setAttribute('class', 'tarefaConcluida');
             divConcluida.appendChild(TConcluida);
             elemento.parentElement.remove();
             salvarTarefas();
             salvarTConcluidas();
-        }
     }
 })
+const btFeito = document.querySelector('#btFeito').addEventListener('click', function(){
+    secConcluida.style.display='block';
+});
+const btAfazer = document.querySelector('#btAFazer').addEventListener('click', function(){
+    secConcluida.style.display='none';
+});
 addTarefasSalvas();
 addTarefasConcluidasSalvas();
