@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@300;400;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Oswald:wght@400;500;700&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/181e07d76d.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@300;400;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Oswald:wght@400;500;700&family=Source+Sans+Pro:ital,wght@0,300;1,300&display=swap"
+        rel="stylesheet">
     <title>To-do list</title>
 </head>
 
@@ -20,21 +23,26 @@
         <section class="section-one">
             <p>Escreva aqui as suas tarefas do dia</p>
             <input type="text" id="inputText" placeholder="Exemplo: Fazer atividade do curso">
-            <button id="btEnviar">enviar</button>
+            <a id="linkEnviar"><i class="fas fa-plus-circle"></i></a>
         </section>
         <div class="div-principal">
             <section class="sections sec-fazer">
-                <h2>Suas tarefas:</h2>
-                <div class="respFazer">
+                <div class="divFazer"></div>
+                <div class="div-bts">
+                    <input type="button" value="A fazer">
+                    <input type="button" value="Feito">
                 </div>
             </section>
+
+
             <section class="sections sec-concluida">
+                <input type="button" value="fechar">
                 <h2>Concluidas:</h2>
-                <div class="respConcluida">
-                    <ul class="ulFazer"></ul>
-                </div>
+                <div class="divConcluida"></div>
             </section>
+
         </div>
+
     </main>
     <script src="assets/js/main.js"></script>
 </body>

@@ -1,40 +1,44 @@
 
 const inputText = document.querySelector('#inputText');
-const btEnviar = document.querySelector('#btEnviar');
-const respFazer = document.querySelector('.respFazer');
-const ulFazer = document.querySelector('.ulFazer')
-//const respConcluida = document.querySelector('.respConcluida');
+const linkEnviar = document.querySelector('#linkEnviar');
+const divFazer = document.querySelector('.divFazer');
+const divConcluida = document.querySelector('.divConcluida');
 function filtro(){
     if(!inputText.value){
         return;
     }
-    criaLi(inputText.value);
+    criarEl(inputText.value);
 }
-function criaLi(input){
-    const li = document.createElement('li');
+function criarEl(input){
+    const link = document.createElement('a');
+    link.setAttribute('class', 'fas');
+    link.classList.add('fa-trash')
+    const div = document.createElement('div');
+    div.setAttribute('class', 'divTarefa')
+    const li = document.createElement('li');    
     li.innerText=input;
-    juntarElementos(li);
+    const check = document.createElement('input');
+    check.type = 'checkbox';   
+    check.setAttribute('class', 'box');
+    juntarElementos(link, div, li, check);
 }
-function juntarElementos( li){
-    const botao = document.createElement('button');
-    ulFazer.appendChild(li);
-    li.appendChild(botao);
-    botao.innerText='bora';
-    botao.setAttribute('class', 'apagar');
-    imprimir(li);
+function juntarElementos(link, div, li, check){
+    div.appendChild(check);
+    div.appendChild(li);
+    div.appendChild(link);
+    imprimir(div);
 }
-function imprimir(li){
-    respFazer.appendChild(li);
+function imprimir(div){
+    divFazer.appendChild(div);
     limpar();
     salvarTarefas();
 }
 function limpar(){
     inputText.value='';
     inputText.focus();
-    
 }
 function salvarTarefas() {
-    const liTarefas = document.querySelectorAll('li');
+    const liTarefas = document.querySelectorAll('.divTarefa');
     const listaDeTarefas = [];
   
     for (let tarefa of liTarefas) {
@@ -46,14 +50,32 @@ function salvarTarefas() {
     localStorage.setItem('tarefas', textoTarejaJson);
 }
 function addTarefasSalvas(){
-    
     const tarefas = localStorage.getItem('tarefas');
     const listaTarefas = JSON.parse(tarefas);
     for(let tarefa of listaTarefas){
-        criaLi(tarefa);
+        criarEl(tarefa);
     }
 }
-btEnviar.addEventListener('click', filtro);
+function salvarTConcluidas(){
+    const liTarefasConcluidas = document.querySelectorAll('.tarefaConcluida');
+    const todasLiConcluidas=[];
+    for(let tarefaC of liTarefasConcluidas){
+        let textoTarefa = tarefaC.innerText;
+        todasLiConcluidas.push(textoTarefa);
+    }
+    const TarefaConcluidaJSON = JSON.stringify(todasLiConcluidas);
+    localStorage.setItem('tarefasConcluidas', TarefaConcluidaJSON);
+}
+function addTarefasConcluidasSalvas(){
+    const tarefaConcluida = localStorage.getItem('tarefasConcluidas');
+    const listaConcluidas= JSON.parse(tarefaConcluida);
+    for(let tarefaC of listaConcluidas){
+        const li = document.createElement('li');
+        li.innerText=tarefaC;
+        divConcluida.appendChild(li);
+    }
+}
+linkEnviar.addEventListener('click', filtro);
 inputText.addEventListener('keypress', function(e){
     if (e.keyCode===13){
         filtro();
@@ -61,9 +83,23 @@ inputText.addEventListener('keypress', function(e){
 });
 document.addEventListener('click', function(e){
     const el = e.target;
-    if(el.classList.contains('apagar')){
+    if(el.classList.contains('fa-trash')){
         el.parentElement.remove();
         salvarTarefas();
     }
 });
+document.addEventListener('click', function(e){
+    const elemento = e.target;
+    if(elemento.classList.contains('box')){
+        if(elemento.checked){
+            let TConcluida = elemento.nextSibling;
+            TConcluida.setAttribute('class', 'tarefaConcluida');
+            divConcluida.appendChild(TConcluida);
+            elemento.parentElement.remove();
+            salvarTarefas();
+            salvarTConcluidas();
+        }
+    }
+})
 addTarefasSalvas();
+addTarefasConcluidasSalvas();

@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    
     outline: none;
 }
 html{
@@ -10,12 +10,9 @@ html{
 body{
     height: 100vh;
     font-size: 2rem;
-    background-image: url(../img/pattern-randomized\(2\).svg);
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: cover;
+    background-color: #171723;
     font-family: 'M PLUS 1', sans-serif;
-    color: black;
+    color: #7076b1;
 }
 header{
     text-align: center;
@@ -26,27 +23,84 @@ h1{
 }
 .section-one{
     text-align: center;
-    height: 8.7vh;
 }
 .sec-fazer{
-    width: 90rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .sec-concluida{
-    width: 90rem;
     display: none;
 }
 .sections{
-    border: #FF6600 solid 2px;
+    
     border-radius: 0.5rem;
     position: absolute;
+    width: 90rem;
+    height: 40rem;
+    overflow-y: auto;
+    background-color: #24273d;
 }
 .div-principal{
-    position: relative;    
+    position: relative;
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 80vh;
+    margin-top: 25rem;
+    
+}
+.div-bts{    
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 18.5rem;
+    background-color: #2f3039;
+    width: 90rem;
+    border-radius: 0.5rem;
+    height: 5rem;
 }
 li{
     list-style: none;
+    display: inline;
 }
+#inputText{
+    width: 40rem;
+    height: 5rem;
+    font-size: 2.5rem;
+}
+#inputText::placeholder{
+    font-size: 2rem;
+
+}
+input[type=button]{
+    background-color: transparent;
+    border: transparent;
+}
+.div-bts input:hover{
+    color: #09ebae;
+}
+input[type=checkbox]{
+    all:unset;
+    position:relative;
+    display: inline-block;
+    border: dashed 1px #CCC;
+    width:20px;
+    height: 20px;
+    background: #EEE;
+    cursor:pointer;
+  }
+  
+  input[type=checkbox]:checked{
+    border: dashed 1px transparent;
+  }
+  
+  input[type=checkbox]:checked::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    left: calc(50% - 6px);
+    top: calc(50% - 6px);
+    border-radius:50%;
+    background: #2DE88F;
+  }
