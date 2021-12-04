@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 
 
-    <style>@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Fuzzy+Bubbles&family=Roboto&display=swap');</style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Fuzzy+Bubbles&family=Montserrat&family=Roboto&display=swap');
+    </style> 
     <script src="https://kit.fontawesome.com/181e07d76d.js" crossorigin="anonymous"></script>
     <title>To-do list</title>
 </head>
@@ -19,8 +21,7 @@
     </header>
     <main>
         <section class="section-one">
-            <p>Escreva aqui as suas tarefas do dia</p>
-            <input type="text" id="inputText" placeholder="Exemplo: Fazer atividade do curso">
+            <input type="text" id="inputText" placeholder="Exemplo: Correr 2km">
             <a id="linkEnviar"><i class="fas fa-plus-circle"></i></a>
         </section>
         <div class="div-principal">
@@ -29,15 +30,16 @@
 
             </section>
             <div class="div-bts">
-                <input type="button" value="A fazer" id="btAFazer">
-                <input type="button" value="Feito" id="btFeito">
+                <input type="button" value="em progresso" id="btAFazer">
+                <input type="button" value="concluidas" id="btFeito">
             </div>
 
 
             <section class="sections sec-concluida">
-                <input type="button" value="fechar">
+                <a class="link-fechar"><i class="fas fa-times"></i></a>
                 <h2>Concluidas:</h2>
                 <div class="divConcluida"></div>
+                <a class="link-apagar">Apagar tudo</a>
             </section>
 
         </div>

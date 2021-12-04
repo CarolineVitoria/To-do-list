@@ -5,7 +5,6 @@ const divFazer = document.querySelector('.divFazer');
 const divConcluida = document.querySelector('.divConcluida');
 const secConcluida = document.querySelector('.sec-concluida');
 
-
 function filtro(){
     if(!inputText.value){
         return;
@@ -46,7 +45,6 @@ function salvarTarefas() {
   
     for (let tarefa of liTarefas) {
       let tarefaTexto = tarefa.innerText;
-      tarefaTexto = tarefaTexto.replace('bora', '');
       listaDeTarefas.push(tarefaTexto);
     }
     const textoTarejaJson = JSON.stringify(listaDeTarefas);
@@ -75,6 +73,7 @@ function addTarefasConcluidasSalvas(){
     for(let tarefaC of listaConcluidas){
         const span = document.createElement('span');
         span.innerText=tarefaC;
+        span.setAttribute('class', 'tarefaConcluida')
         divConcluida.appendChild(span);
     }
 }
@@ -89,6 +88,7 @@ document.addEventListener('click', function(e){
     if(el.classList.contains('fa-times-circle')){
         el.parentElement.remove();
         salvarTarefas();
+        limpar();
     }
 });
 document.addEventListener('click', function(e){
@@ -108,5 +108,12 @@ const btFeito = document.querySelector('#btFeito').addEventListener('click', fun
 const btAfazer = document.querySelector('#btAFazer').addEventListener('click', function(){
     secConcluida.style.display='none';
 });
+const linkApagar= document.querySelector('.link-apagar').addEventListener('click', function(){
+    const filhosDaDiv = divConcluida.querySelectorAll('.tarefaConcluida');
+    for(let filho of filhosDaDiv){
+        filho.remove();
+    }
+    salvarTConcluidas();
+})
 addTarefasSalvas();
 addTarefasConcluidasSalvas();
