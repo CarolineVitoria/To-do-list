@@ -4,10 +4,14 @@ const linkEnviar = document.querySelector('#linkEnviar');
 const divFazer = document.querySelector('.divFazer');
 const divConcluida = document.querySelector('.divConcluida');
 const secConcluida = document.querySelector('.sec-concluida');
-
+const linkFechar = document.querySelector('.link-fechar');
+const linkApagar = document.querySelector('.link-apagar')
 function filtro(){
     if(!inputText.value){
         return;
+    }if(inputText.value==='vick'){
+        alert('oi vidente');
+        return
     }
     criarEl(inputText.value);
 }
@@ -78,9 +82,11 @@ function addTarefasConcluidasSalvas(){
     }
 }
 linkEnviar.addEventListener('click', filtro);
+linkEnviar.addEventListener('click', verificarTarefas);
 inputText.addEventListener('keypress', function(e){
     if (e.keyCode===13){
         filtro();
+        verificarTarefas();
     }
 });
 document.addEventListener('click', function(e){
@@ -88,6 +94,7 @@ document.addEventListener('click', function(e){
     if(el.classList.contains('fa-times-circle')){
         el.parentElement.remove();
         salvarTarefas();
+        verificarTarefas();
         limpar();
     }
 });
@@ -95,8 +102,10 @@ document.addEventListener('click', function(e){
     const elemento = e.target;
     if(elemento.classList.contains('fa-check-circle')){
             let TConcluida = elemento.nextSibling;
+            let divTsConcluida = document.createElement('div');
             TConcluida.setAttribute('class', 'tarefaConcluida');
-            divConcluida.appendChild(TConcluida);
+            divTsConcluida.appendChild(TConcluida);
+            divConcluida.appendChild(divTsConcluida);
             elemento.parentElement.remove();
             salvarTarefas();
             salvarTConcluidas();
@@ -104,16 +113,34 @@ document.addEventListener('click', function(e){
 })
 const btFeito = document.querySelector('#btFeito').addEventListener('click', function(){
     secConcluida.style.display='block';
+    linkApagar.style.display='block';
+    linkFechar.style.display='block';
 });
 const btAfazer = document.querySelector('#btAFazer').addEventListener('click', function(){
     secConcluida.style.display='none';
+    linkApagar.style.display='none'
+    linkFechar.style.display='none';
 });
-const linkApagar= document.querySelector('.link-apagar').addEventListener('click', function(){
+
+linkApagar.addEventListener('click', function(){
     const filhosDaDiv = divConcluida.querySelectorAll('.tarefaConcluida');
     for(let filho of filhosDaDiv){
         filho.remove();
     }
+
     salvarTConcluidas();
 })
+
+function verificarTarefas(){
+    const v = divFazer.querySelector('.divTarefa');
+    const paiDivIcon= document.querySelector('.pai-div-icon');
+    if(divFazer.contains(v)){
+        paiDivIcon.style.display='none';
+    }else{
+        paiDivIcon.style.display='flex';
+        console.log('droga')
+    }
+}
 addTarefasSalvas();
 addTarefasConcluidasSalvas();
+verificarTarefas();

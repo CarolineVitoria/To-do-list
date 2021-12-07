@@ -59,7 +59,7 @@ h1{
     justify-content: space-around;
     position: absolute;
     top: 35rem;
-    background-color: #2f3039;
+    background-color: rgba(36,39,61,255);
     width: 100%;
     border-radius: 0.5rem;
     height: 5rem;
@@ -136,4 +136,36 @@ input[type=button]{
 }
 a{
     cursor: pointer;
+}
+.div-icon{
+    display: flex;
+    align-items: center;
+    width: 50rem;
+    height: 20rem;
+}
+.pai-div-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.icon-list{
+    height: 17rem;
+}
+.p-icon-list{
+    color: #CCC;
+}
+.link-apagar{
+    display: none;
+    position: absolute;
+    top: 30rem;
+    left: 64rem;
+    font-size: 1.5rem;
+}
+.link-fechar{
+    position: absolute;
+    display: none;
+}
+.divConcluida div{
+    border-bottom: #CCC solid 0.2rem;
 }
