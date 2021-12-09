@@ -176,3 +176,8 @@ a{
         width: 85%;
     }
 }
+@media screen and ( max-width: 486px){
+    #inputText{
+        width: 75%;
+    }
+}
