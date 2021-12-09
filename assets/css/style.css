@@ -86,6 +86,7 @@ h1{
 }
 #inputText:focus{
     outline: 0.2rem solid #3065d2;
+    box-shadow: 0 0 2rem  #3065d2;;
 }
 #linkEnviar:hover{
     color: #3065d2;
