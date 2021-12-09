@@ -8,9 +8,6 @@ const linkApagar = document.querySelector('.link-apagar')
 function filtro(){
     if(!inputText.value){
         return;
-    }if(inputText.value==='vick'){
-        alert('oi vidente');
-        return
     }
     criarEl(inputText.value);
 }
