@@ -4,7 +4,6 @@ const linkEnviar = document.querySelector('#linkEnviar');
 const divFazer = document.querySelector('.divFazer');
 const divConcluida = document.querySelector('.divConcluida');
 const secConcluida = document.querySelector('.sec-concluida');
-const linkFechar = document.querySelector('.link-fechar');
 const linkApagar = document.querySelector('.link-apagar')
 function filtro(){
     if(!inputText.value){
@@ -76,9 +75,11 @@ function addTarefasConcluidasSalvas(){
     const listaConcluidas= JSON.parse(tarefaConcluida);
     for(let tarefaC of listaConcluidas){
         const span = document.createElement('span');
+        const divTsConcluida = document.createElement('div');
         span.innerText=tarefaC;
         span.setAttribute('class', 'tarefaConcluida')
-        divConcluida.appendChild(span);
+        divTsConcluida.appendChild(span);
+        divConcluida.appendChild(divTsConcluida);
     }
 }
 linkEnviar.addEventListener('click', filtro);
@@ -101,30 +102,29 @@ document.addEventListener('click', function(e){
 document.addEventListener('click', function(e){
     const elemento = e.target;
     if(elemento.classList.contains('fa-check-circle')){
-            let TConcluida = elemento.nextSibling;
-            let divTsConcluida = document.createElement('div');
+            const TConcluida = elemento.nextSibling;
+            const divTsConcluida = document.createElement('div');
             TConcluida.setAttribute('class', 'tarefaConcluida');
             divTsConcluida.appendChild(TConcluida);
             divConcluida.appendChild(divTsConcluida);
             elemento.parentElement.remove();
             salvarTarefas();
             salvarTConcluidas();
+            verificarTarefas();
     }
 })
 const btFeito = document.querySelector('#btFeito').addEventListener('click', function(){
     secConcluida.style.display='block';
     linkApagar.style.display='block';
-    linkFechar.style.display='block';
 });
 const btAfazer = document.querySelector('#btAFazer').addEventListener('click', function(){
     secConcluida.style.display='none';
-    linkApagar.style.display='none'
-    linkFechar.style.display='none';
+    linkApagar.style.display='none';
 });
 
 linkApagar.addEventListener('click', function(){
-    const filhosDaDiv = divConcluida.querySelectorAll('.tarefaConcluida');
-    for(let filho of filhosDaDiv){
+    const filhosDaDivC = divConcluida.querySelectorAll('.divConcluida div');
+    for(let filho of filhosDaDivC){
         filho.remove();
     }
 

@@ -8,7 +8,7 @@ html{
     font-size: 62.5%;
 }
 body{
-    height: 100vh;
+    height: 95vh;
     font-size: 2rem;
     background-color: #171723;
     font-family: 'Montserrat';
@@ -64,7 +64,6 @@ h1{
     border-radius: 0.5rem;
     height: 5rem;
     box-sizing: border-box;
-    padding: 0 20rem;
     border: #CCC 0.2rem solid;
     border-top: none;
 }
@@ -73,7 +72,7 @@ h1{
     font-size: 2.3rem;
 }
 #inputText{
-    width: 35%;
+    width: 50%;
     height: 5rem;
     font-size: 2.5rem;
     background-color: #2f3039;
@@ -109,7 +108,7 @@ input[type=button]{
     font-weight: 400;
 }
 .fa-check-circle:hover{
-    color: #09ebae;
+    color: #09eb4dbb;
 }
 .fa-times-circle{
     font-weight: 400;
@@ -156,16 +155,24 @@ a{
     color: #CCC;
 }
 .link-apagar{
-    display: none;
+    margin: 1rem;
     position: absolute;
-    top: 30rem;
-    left: 64rem;
-    font-size: 1.5rem;
+    display: none;
 }
-.link-fechar{
-    position: absolute;
-    display: none;
+.link-apagar:hover{
+    color: rgba(255, 0, 0, 0.651);
 }
 .divConcluida div{
-    border-bottom: #CCC solid 0.2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4.5rem;
+    border-bottom: #CCC 0.1rem solid;
+    text-align: center;
+}
+@media screen and ( max-width: 1012px){
+    main{
+        width: 85%;
+    }
 }
